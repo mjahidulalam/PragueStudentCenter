@@ -11,6 +11,7 @@ from django.views.generic import CreateView
 from django.shortcuts import get_object_or_404, render, redirect
 from .utils import update_views
 from django.db import models
+from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     CreateView, DetailView, UpdateView, DeleteView, ListView, #FormView
@@ -28,8 +29,12 @@ from .models import (
 #Will be deleted
 def test_subject_list(request):
     subjects = Category.objects.all()
+    paginator = Paginator(subjects, 10)
+    pages = request.GET.get('page')
+    page = paginator.get_page(pages)
+
     context = {
-        "subjects":subjects,
+        "page":page,
     }
     return render(request, "screens/test_subjects_list.html", context)
 
@@ -37,8 +42,11 @@ def test_subject_list(request):
 # Home page 
 def department_subjects(request):
     forums = Category.objects.all()
+    paginator = Paginator(forums, 10)
+    pages = request.GET.get('page')
+    page = paginator.get_page(pages)
     context = {
-        "forums":forums,
+        "page":page,
     }
     return render(request, "screens/department_subjects.html", context)
 
@@ -49,28 +57,41 @@ def subject_list_by_department(request, dept_id):
     if dept_id in dept_all:
         subjects_all = Category.objects.filter(deptartment=dept_id)
 
+    paginator = Paginator(subjects_all, 10)
+    pages = request.GET.get('page')
+    page = paginator.get_page(pages)
+
     context.update ({
-        'subject_filter_by_dept':subjects_all
+        'page': page
     })
 
     return render(request, "screens/subject_list.html", context)
 
 # List all forums (post) in a page
 def post_list_all(request):
-    posts = Post.objects.all()
+    # posts = Post.objects.all()
+    posts = Post.objects.order_by('date')
+    paginator = Paginator(posts, 10)
+    pages = request.GET.get('page')
+    page = paginator.get_page(pages)
 
     context = {'posts':posts,
+                'page':page,
                 'user':request.user}
     return render(request, "screens/post_list_all.html", context)
 
 # List all forums (post) by department in a page 
 def post_list_categories(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    posts = Post.objects.filter(approved=True, categories=category)
+    posts = Post.objects.filter(approved=True, categories=category).order_by('-date')
     # feed_upload = UploadFiles.objects.filter(feed=posts.id)
+    paginator = Paginator(posts, 10)
+    pages = request.GET.get('page')
+    page = paginator.get_page(pages)
 
     context = {
         "posts": posts,
+        "page": page,
         "forum": category,
     }
     return render(request, "screens/post_list_categories.html", context)

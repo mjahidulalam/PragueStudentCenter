@@ -54,7 +54,7 @@
 
                     <!-- Forum home -->
                     <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-                        {% for subject in subject_filter_by_dept %}
+                        {% for subject in page %}
                         <div class="card mb-2 bg-dark">
                             <div class="card-body p-2 p-sm-3">
                                 <div class="media forum-item">
@@ -62,9 +62,12 @@
                                         <h3><a data-toggle="collapse" data-target=".forum-content" style="color: rgb(196, 196, 196)" href="{{subject.get_url}}">{{subject.title}}</a></h3>
                                         <p class="text-white">{{subject.description}}</p>
                                         {% if subject.num_posts == 0 %}
-                                            <p class="text-light"><strong>No post yet... </strong></p>
+                                            <p style="color: rgb(163, 163, 163);"><strong>No post yet... </strong></p>
                                         {% else %}
-                                            <p class="text-light"><a href="{{subject.last_post.get_url}}">Last post</a> on <span class="text-secondary font-weight-bold text-light">{{subject.last_post.date|date}}</span></p>
+                                            <p style="color: rgb(163, 163, 163);">
+                                                <a href="{{subject.last_post.get_url}}">Last post</a> on 
+                                                <span class="font-weight-bold" style="color: rgb(207, 207, 207);">{{subject.last_post.date|date}}</span>
+                                            </p>
                                         {% endif %}
                                         <!-- <p><a href="{{forum.last_post.get_url}}">Last post</a></p> by <a href="">{{forum.last_post.user.fullname|title}}</a> on <small>{{forum.last_post.date|date}}</small> -->
                                     </div>
@@ -75,6 +78,9 @@
                             </div>
                         </div>
                         {% endfor %}
+                        
+                        <!-- pagination -->
+                        {% include 'components/pagination.html' %}
                     </div>
                     <!-- /Forum home -->
                     

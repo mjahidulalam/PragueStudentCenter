@@ -57,7 +57,7 @@ def signup(request):
             email.send(fail_silently=False)
 
             login(request, user)
-            return redirect("forum:home")
+            return redirect("user:verify")
     else:
         form = UserRegisterForm()
 
@@ -67,10 +67,13 @@ def signup(request):
     })
     return render(request, 'users/register.html', context)
 
+def verification(request):
+    context= {}
+    return render(request, 'users/verification.html', context)
+
 def profile(request, pk, username):
     user = request.user
     profile = User.objects.get(id=pk)
-    print(pk, username, user.id)
     profile_info = Author.objects.get(user=pk)
     posts = Post.objects.filter(user=profile.id)
     # comments = Comment.objects.filter(user=profile.id)

@@ -5,6 +5,7 @@ from .views import  (
      signup,
     #  update_profile,
      profile,
+     verification,
      ProfileUpdateView,
      ProfileDeleteView,
      VerificationView
@@ -19,6 +20,7 @@ urlpatterns = [
     path('profile/<int:pk>/<str:username>', profile, name='profile'),
     path('profile/<int:pk>/<str:username>/update', ProfileUpdateView.as_view(), name='update'),
     path('profile/<int:pk>/<str:username>/delete', ProfileDeleteView.as_view(), name='delete'),
+    path('profile/verification', verification, name='verify'),
     # path('profile/update', update_profile, name='update'),
     path('activate/<uidb64>/<token>', VerificationView.as_view(), name='activate')
 ]

@@ -27,7 +27,7 @@
                     <!-- /Inner main header -->     
                     <!-- Forum home -->
                     <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-                        {% for forum in forums %}
+                        {% for forum in page %}
                         <div class="card mb-2 bg-dark">
                             <div class="card-body p-2 p-sm-3">
                                 <div class="media forum-item">
@@ -35,9 +35,12 @@
                                         <h3><a data-toggle="collapse" data-target=".forum-content" style="color: rgb(196, 196, 196);" href="{{forum.get_url}}">{{forum.title}}</a></h3>
                                         <p class="text-light">{{forum.description}}</p>
                                         {% if forum.num_posts == 0 %}
-                                            <p><strong>No post yet... </strong></p>
+                                            <p style="color: rgb(163, 163, 163);"><strong>No post yet... </strong></p>
                                         {% else %}
-                                            <p style="color: rgb(163, 163, 163);"><a href="{{forum.last_post.get_url}}">Last post</a> on <span style="color: rgb(207, 207, 207);" class="font-weight-bold">{{forum.last_post.date|date}}</span></p>
+                                            <p style="color: rgb(163, 163, 163);">
+                                                <a href="{{forum.last_post.get_url}}">Last post</a> on 
+                                                <span style="color: rgb(207, 207, 207);" class="font-weight-bold">{{forum.last_post.date|date}}</span>
+                                            </p>
                                         {% endif %}
                                         <!-- <p><a href="{{forum.last_post.get_url}}">Last post</a></p> by <a href="">{{forum.last_post.user.fullname|title}}</a> on <small>{{forum.last_post.date|date}}</small> -->
                                     </div>
@@ -48,9 +51,12 @@
                             </div>
                         </div>
                         {% endfor %}
+                         <!-- pagination -->
+                         {% include 'components/pagination.html' %}
                     </div>
                     <!-- /Forum home -->
                 </div>
+                
                 <!-- /Inner main -->
             </div>
         </div>

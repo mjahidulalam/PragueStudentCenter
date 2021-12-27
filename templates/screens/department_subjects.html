@@ -33,6 +33,8 @@
                                 <div class="media forum-item">
                                     <div class="media-body">
                                         <h3><a data-toggle="collapse" data-target=".forum-content" style="color: rgb(196, 196, 196);" href="{{forum.get_url}}">{{forum.title}}</a></h3>
+                                        <h6 style="color: rgb(196, 196, 196);">in {{forum.deptartment}}</h6>
+                                        <!-- <h3><a data-toggle="collapse" data-target=".forum-content" style="color: rgb(196, 196, 196);" href="{{forum.get_url}}">{{forum.title}}</a> in {{forum.deptartment}}</h3> -->
                                         <p class="text-light">{{forum.description}}</p>
                                         {% if forum.num_posts == 0 %}
                                             <p style="color: rgb(163, 163, 163);"><strong>No post yet... </strong></p>

@@ -67,7 +67,7 @@ def post_list_all(request):
 def post_list_categories(request, slug):
     category = get_object_or_404(Category, slug=slug)
     posts = Post.objects.filter(approved=True, categories=category)
-    feed_upload = UploadFiles.objects.filter(feed=post.id)
+    # feed_upload = UploadFiles.objects.filter(feed=posts.id)
 
     context = {
         "posts": posts,

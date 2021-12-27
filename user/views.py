@@ -143,6 +143,7 @@ class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return reverse('user:profile', kwargs={'pk': self.request.user.id, "username": self.request.user})
 
     def post(self, request, *args, **kwargs):
+        print("print", self.request.user.id)
         self.object = self.get_object()
         user = Author.objects.get(user=request.user.id)
         form = self.form_class(request.POST, request.FILES, instance = user)
@@ -151,9 +152,9 @@ class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             form.save()
             form2.save()
             # return redirect("forum:home")
-            return redirect('user:profile', request.user.pk, request.user.username)
+            return redirect('user:profile', request.user.id, request.user.username)
+            # return reverse('user:profile', kwargs={'pk': self.request.user.id, "username": self.request.user})
         else:
-            print('summit')
             return self.render_to_response(
               self.get_context_data(form2=form2))
     

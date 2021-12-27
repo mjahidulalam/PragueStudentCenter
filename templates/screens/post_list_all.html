@@ -40,7 +40,7 @@
                 <div class="card mb-2 bg-dark">
                     <div class="card-body p-2 p-sm-3">
                         <div class="media forum-item">
-                            <a href="{% url 'user:profile' post.user.pk post.user%}"><img src="{{ post.user.profile_pic.url }}" class="mr-3 rounded-circle" height="50" width="50" alt="User" /></a>
+                            <a href="{% url 'user:profile' post.user.user_id post.user%}"><img src="{{ post.user.profile_pic.url }}" class="mr-3 rounded-circle" height="50" width="50" alt="User" /></a>
                             <div class="media-body">
                                 <!-- <div class="card-head"> -->
                                     <!-- <h6 class="text-white">

@@ -9,36 +9,42 @@ class NewPost(forms.ModelForm):
         fields =  ['title', 'content', 'categories', 'tags']
 
         labels = {
-            'title': 'Title'
-            , 'content': 'Body'
-            , 'categories': 'Categories'
-            , 'tags': 'Tags'
+            'title': 'Title',
+            'content': 'Body',
+            'categories': 'Categories',
+            'tags': 'Tags',
         }
 
         widgets = {
             'title': forms.TextInput(attrs={
                 'name':"post_title",
                 'type':"text",
-                'class':"form-control",
+                'class':"form-control bg-dark text-light",
                 # 'id':"exampleFormControlInput1",
-                'placeholder':"Title",}) ,
+                'style': "border-color: gray;",
+                'placeholder':"Title",
+            }),
             
             'content': forms.Textarea(attrs={
                 'name':"post_text",
                 'type':"text",
                 # 'class':"editable medium-editor-textarea",
-                'class': "form-control",
+                'class': "form-control bg-dark text-light",
+                'style': "border-color: gray;",
                 # 'id':"exampleFormControlTextarea1",
-                'placeholder':"Text",}),
+                'placeholder':"Text",
+            }),
 
             'categories': forms.Select(attrs = { 
                 'name': 'categories',
-                'class': 'form-control',}),
+                'class': 'form-control bg-dark text-light',
+                'style': "border-color: gray;",
+            }),
 
             'tags': forms.TextInput(attrs={
                 'name':"tags",
-                'class': 'form-control',
-                
+                'class': 'form-control bg-dark text-light',
+                'style': "border-color: gray;",                
             })
             #'categories':forms.Select(attrs={'class':'form-control'}),
         }
@@ -64,4 +70,28 @@ class NewSubject(forms.ModelForm):
             'title': 'Title'
             , 'description': 'Description'
             , 'deptartment': 'Department'
+        }
+
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'type':"text",
+                'class':"form-control bg-dark text-light",
+                # 'id':"exampleFormControlInput1",
+                'style': "border-color: gray;",
+                'placeholder':"Title",
+            }),
+            
+            'description': forms.Textarea(attrs={
+                'type':"text",
+                # 'class':"editable medium-editor-textarea",
+                'class': "form-control bg-dark text-light",
+                'style': "border-color: gray;",
+                # 'id':"exampleFormControlTextarea1",
+                'placeholder':"Description",
+            }),
+
+            'deptartment': forms.Select(attrs = { 
+                'class': 'form-control bg-dark text-light',
+                'style': "border-color: gray;",
+            }),
         }

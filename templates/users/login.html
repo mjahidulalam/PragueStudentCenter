@@ -1,0 +1,43 @@
+{% extends 'root.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<br>
+<br>
+<div class="container" style="height: calc(100vh - 110px);">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card-group mb-0">
+          <div class="card p-4 bg-secondary text-white">
+            <div class="card-body">
+              <h1><i class="fa fa-sign-in" aria-hidden="true">  Login</i>
+              </h1>
+              <p class="text-light">Sign In to your account</p>
+                <form method="POST" >
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form|crispy }}
+                    </div>
+                    <div class="text-left py-1">
+                        <!-- <a href="index.html" class="btn btn-lg btn-primary">Sign up</a> -->
+                        <button type="submit" class="btn btn-primary px-4">Login</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+          <div class="card text-white bg-dark py-5 d-md-down-none" style="width:44%;">
+            <div class="card-body text-center">
+              <div>
+                <h2>Sign up</h2>
+                <p class="text-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <a class="btn btn-primary" href="{% url 'user:register' %}" role="button"> Register Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

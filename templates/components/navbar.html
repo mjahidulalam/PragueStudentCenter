@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0f1011;">
+  <div class="container">
+    <a class="navbar-brand" href="">PSC</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'forum:home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'forum:post_all' %}">Forum</a> 
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Department
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" style="background-color: black;">
+            {% for dept in departments %}
+            <li><a class="dropdown-item text-light" href="{{dept.get_absolute_url}}">{{dept.title}}</a></li>
+            <!-- <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+
+        <!--User option nav's-->
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+          <li><a class="nav-item nav-link" href="{% url 'user:profile' user.pk user.username%}">Profile</a></li>
+          <li><a class="nav-item nav-link" href="{% url 'user:logout' %}">Logout</a></li>
+        {% else %}
+          <li><a class="nav-item nav-link" href="{% url 'user:login' %}">Login</a></li>
+          <li><a class="nav-item nav-link" href="{% url 'user:register' %}">Register</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+

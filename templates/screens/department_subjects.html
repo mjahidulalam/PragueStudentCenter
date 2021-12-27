@@ -1,0 +1,77 @@
+{% extends 'root.html' %}
+{% block content %}
+    <div class="container">
+        <div class="main-body p-0">
+            <div class="inner-wrapper">
+                
+                <!-- Inner sidebar -->    
+                {% include 'components/sidebar.html' %}
+                <!-- /Inner sidebar -->
+                
+                <!-- Inner main -->
+                <div class="inner-main">
+                    <!-- Inner main header -->
+                    <form action="{% url 'forum:search_topic' %}" role="form" method="GET">
+                    <div class="inner-main-header bg-dark" style="border-color: inherit !important;">
+                        <select class="custom-select custom-select-sm w-auto mr-1 bg-dark text-white" style='border-color: gray;'>
+                            <option class="text-light" value="Everything">Everything</option>
+                            <option class="text-light" value="Titles">Titles</option>
+                            <option class="text-light" value="Descriptions">Descriptions</option>
+                        </select>
+                        <input type="text" name="q" class="form-control form-control-sm mb-4 mt-4 bg-dark text-white"  style='border-color: gray;' placeholder="Search forum" />
+                        <div class="invisible">
+                            <button type="submit" name="search"></button>
+                        </div>
+                    </div> 
+                    </form> 
+                    <!-- /Inner main header -->     
+                    <!-- Forum home -->
+                    <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+                        {% for forum in forums %}
+                        <div class="card mb-2 bg-dark">
+                            <div class="card-body p-2 p-sm-3">
+                                <div class="media forum-item">
+                                    <div class="media-body">
+                                        <h3><a data-toggle="collapse" data-target=".forum-content" style="color: rgb(196, 196, 196);" href="{{forum.get_url}}">{{forum.title}}</a></h3>
+                                        <p class="text-light">{{forum.description}}</p>
+                                        {% if forum.num_posts == 0 %}
+                                            <p><strong>No post yet... </strong></p>
+                                        {% else %}
+                                            <p style="color: rgb(163, 163, 163);"><a href="{{forum.last_post.get_url}}">Last post</a> on <span style="color: rgb(207, 207, 207);" class="font-weight-bold">{{forum.last_post.date|date}}</span></p>
+                                        {% endif %}
+                                        <!-- <p><a href="{{forum.last_post.get_url}}">Last post</a></p> by <a href="">{{forum.last_post.user.fullname|title}}</a> on <small>{{forum.last_post.date|date}}</small> -->
+                                    </div>
+                                    <div class="text-muted small text-center align-self-top">
+                                        <span class="d-none d-sm-inline-block text-light"><i class="fa fa-pencil-square-o"  aria-hidden="true"></i> {{forum.num_posts}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- /Forum home -->
+                </div>
+                <!-- /Inner main -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+    <!-- Forum Info -->
+    <!-- <div class="forum-info">
+        <div class="chart">
+            MyForum - Stats &nbsp;<i class="fa fa-bar-chart"></i>
+        </div>
+        <span><u>5,369</u> Posts in <u>48</u> Topics by <u>8,124</u> Members.</span><br>
+        <span>Latest post: <b><a href="">Random post</a></b> on Dec 15 2021 By <a href="">RandomUser</a></span>.<br>
+        <span>Check <a href="">the latest posts</a> .</span><br>
+    </div>   -->
+
+

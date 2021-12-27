@@ -1,0 +1,43 @@
+<!-- Inner sidebar -->
+<div class="inner-sidebar bg-dark" style='border-color: inherit;'>
+    <!-- Inner sidebar header -->
+    {% if posts %}
+        {% include 'components/sidebar_inner_new_post.html' %}
+    {% elif post %}
+        {% include 'components/sidebar_inner_new_post.html' %}
+    {% else %}
+        {% include 'components/sidebar_inner_new_subject.html' %}    
+    {% endif %}
+    <!-- /Inner sidebar header -->
+    
+    <!-- Inner sidebar body -->
+    <div class="inner-sidebar-body p-0">
+        <div class="p-3 h-100" data-simplebar="init">
+            <!-- <div class="simplebar-wrapper" style="margin: -16px;"> -->
+                <!-- <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div> -->
+                <!-- <div class="simplebar-mask"> -->
+                    <!-- <div class="simplebar-offset" style="right: 0px; bottom: 0px;"> -->
+                        <!-- <div class="simplebar-content-wrapper" style="height: 100%;"> -->
+                            <!-- <div class="simplebar-content" style="padding: 16px;"  style="overflow: hidden;"> -->
+                                <!-- <hr> -->
+                                <p class='text-light' style="font-size: 1.5rem;text-align: center;">Departments</p>
+                                <!-- <hr> -->
+                                <nav class="nav nav-pills nav-gap-y-1 flex-column" style="overflow: hidden;">
+                                    {% for dept in departments %}
+                                    <h6><a href="{% url 'forum:dept_filter' dept.id %}" class="nav-link nav-link-faded has-icon text-light">
+                                        {{ dept.title }}
+                                    </a></h6>
+                                    {% endfor %}
+                                </nav>
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+                <!-- <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div> -->
+            <!-- </div> -->
+            
+        </div>
+    </div>
+    <!-- /Inner sidebar body -->
+</div>  
+

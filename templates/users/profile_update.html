@@ -1,0 +1,115 @@
+{% extends 'root.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="row flex-lg-nowrap pt-5">
+
+  <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card bg-dark text-light">
+          <div class="card-body" style="padding: 3rem;">
+            <div class="e-profile">
+              <form method="POST" novalidate="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-12 col-sm-auto mb-3">
+                    <div class="mx-auto" style="width: 140px;">
+                      <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; ">
+                        <img src="{{ profile.profile_pic.url }}" class="rounded-circle" width="140" alt="User" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                      <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ user.username }}</h4>
+                      <div class="text-light">{{ user.email }}</div>
+                      <div class="text-light"><small> Member since {{ user.date_joined }}</small></div>
+                      <div class="mt-2">
+                          <button class="btn btn-secondary" type="button">
+                            <i class="fa fa-fw fa-camera"></i>
+                            <span>{{ form.profile_pic }}</span>
+                          </button>
+                        <!-- <button class="btn btn-secondary" type="button">
+                          <i class="fa fa-fw fa-camera"></i>
+                          <span>{{ form.profile_pic|as_crispy_field }}</span>
+                        </button> -->
+                      </div>
+                    </div>
+                    <div class="text-center text-sm-right">
+                      <div class="px-xl-3">
+                        <a class="btn btn-block btn-secondary" href="{% url 'user:logout' %}">
+                          <i class="fa fa-sign-out"></i>
+                          <span>Logout</span>
+                        </a>
+                      </div>
+                      <!-- <span class="badge badge-secondary">administrator</span>
+                      <div class="text-muted"><small>{{ user.date_joined }}</small></div> -->
+                    </div>
+                  </div>
+                </div>
+                <!-- <ul class="nav nav-tabs">
+                  <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                </ul> -->
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+                    <!-- <form method="POST" novalidate=""> -->
+                      <!-- {% csrf_token %} -->
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                {{ form2.first_name|as_crispy_field }}
+                                <!-- <label>First Name</label>
+                                <input class="form-control" type="text" placeholder="user@example.com" value=""> -->
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                {{ form2.last_name|as_crispy_field }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <!-- <label>Email</label> -->
+                                <!-- <input class="form-control bg-dark text-light" type="text" placeholder="user@example.com"> -->
+                                {{ form2.email|as_crispy_field }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col mb-3">
+                              <div class="form-group">
+                                  {{ form.bio|as_crispy_field }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row justify-content-between">
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-secondary">Save Changes</button>
+                        </div>
+                        <div class="col-auto">
+                            <a class="btn btn-outline-danger" href="{% url 'user:delete' user.id user.username%}">Delete Profile</a>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}

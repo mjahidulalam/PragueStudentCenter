@@ -1,0 +1,115 @@
+{% extends 'root.html' %}
+{% load static %}
+{% load hitcount_tags %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+<link rel="stylesheet" href="{% static 'post_details.css' %}">
+<div class="container" style="height: calc(100vh - 100px) !important">
+<div class="main-body p-0">
+    <div class="inner-wrapper">
+        <!-- Inner sidebar -->
+        {% include 'components/sidebar.html' %}
+        <!-- /Inner sidebar -->
+
+        <!-- Inner main -->
+        <div class="inner-main">
+            <!-- Inner main header -->
+            <form action="{% url 'forum:search_topic' %}" role="form" method="GET">
+                <div class="inner-main-header bg-dark" style="border-color: inherit;">
+                    <select class="custom-select custom-select-sm w-auto mr-1 bg-dark text-white" style="border-color: gray;">
+                        <option class="text-light" value="Everything">Everything</option>
+                        <option class="text-light" value="Titles">Titles</option>
+                        <option class="text-light" value="Descriptions">Descriptions</option>
+                    </select>
+                    <input type="text" name="q" class="form-control form-control-sm shadow-none mb-4 mt-4 bg-dark text-white" placeholder="Search forum" style="border-color: gray;" />
+                    <div class="invisible">
+                        <button type="submit" name="search"></button>
+                    </div>
+                </div> 
+            </form> 
+            <!-- /Inner main header --> 
+
+            <!-- Inner main body -->
+
+            <!-- Forum List -->
+
+            
+            
+            <div class="inner-main-body p-2 p-sm-3 collapse forum-content show" >
+                {% for post in posts %}
+                <div class="card mb-2 bg-dark">
+                    <div class="card-body p-2 p-sm-3">
+                        <div class="media forum-item">
+                            <a href="{% url 'user:profile' post.user.pk post.user%}"><img src="{{ post.user.profile_pic.url }}" class="mr-3 rounded-circle" height="50" width="50" alt="User" /></a>
+                            <div class="media-body">
+                                <!-- <div class="card-head"> -->
+                                    <!-- <h6 class="text-white">
+                                        <a data-toggle="collapse" data-target=".forum-content" class="text-white" href="{{post.get_url}}">{{post.title}}</a>
+                                    </h6> -->
+                                    <!-- <p style="color: rgb(207 207 207); padding-left: 0pt;" >Posted by</p>
+                                    <p style="color: rgb(207 207 207); padding-left: 3pt;"><a class="text-white" href="{{user.get_url}}">{{ post.user }}</a></p>
+                                    <p style="color: rgb(207 207 207);">{{ post.date }}</p> -->
+                                <div style="display: flex">
+                                    <small>
+                                        <p style="color: rgb(207 207 207); padding-left: 0pt;" >Posted by 
+                                            <a class="text-white" href="{% url 'user:profile' post.user.user_id post.user%}">{{ post.user }}</a> {{ post.date | timesince }} ago
+                                        </p>
+                                    </small>
+                                    <!-- <p style="color: rgb(207 207 207); padding-left: 3pt;"><a class="text-white" href="{{user.get_url}}">{{ post.user }}</a></p>
+                                    <p style="color: rgb(207 207 207);">{{ post.date }}</p> -->
+                                </div>
+
+                                <!-- </div> -->
+                                <!-- <h6 class="text-white">
+                                    <a data-toggle="collapse" data-target=".forum-content" class="text-white" href="{{post.get_url}}">{{post.title}}</a>
+                                </h6> -->
+                                <!-- <p class="text-light">{{ post.content|safe }}</p> -->
+                                <h6 class="text-white">
+                                    <a data-toggle="collapse" data-target=".forum-content" class="text-white" href="{{post.get_url}}">{{post.title}}</a>
+                                </h6>
+                                <!-- <p class="text-muted"><a href="javascript:void(0)">{{post.last_reply.user.fullname|title}}</a> replied <span class="text-secondary font-weight-bold">{{post.last_reply.date|date}}</span></p> -->
+                            </div>
+                            <div class="text-muted small text-center align-self" style="color: rgb(184, 184, 184) !important;">
+                                <span class="d-none d-sm-inline-block">
+                                    <i class="far fa-eye"></i> 
+                                    {% get_hit_count for post %}
+                                </span>
+                                <span>
+                                    <i class="far fa-comment ml-2"></i>
+                                    {{post.num_comments}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+                <!-- pagination -->
+                <ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
+                    <li class="page-item disabled">
+                        <span class="page-link has-icon bg-dark"><i class="material-icons">chevron_left</i></span>
+                    </li>
+                    <li class="page-item"><a class="page-link bg-dark" href="javascript:void(0)">1</a></li>
+                    <li class="page-item active"><span class="page-link  bg-dark">2</span></li>
+                    <li class="page-item"><a class="page-link  bg-dark" href="javascript:void(0)">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link has-icon bg-dark" href="javascript:void(0)"><i class="material-icons">chevron_right</i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /Forum List -->
+
+            <!-- /Inner main body -->
+        </div>
+        <!-- /Inner main -->
+    </div>
+
+    <!-- New Thread Modal -->
+   
+</div>
+</div>
+<!-- Footer -->
+<!-- {% include 'components/footer.html' %} -->
+<!-- Footer -->
+{% endblock content %}	

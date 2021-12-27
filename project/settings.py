@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'tinymce',
     'hitcount',
     'taggit',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -106,6 +107,31 @@ else:
         }
     }
 
+# POSTGRES_DB = os.environ.get("POSTGRES_DB")
+# POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+# POSTGRES_USER = os.environ.get("POSTGRES_USER")
+# POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
+# POSTGRES_PORT = os.environ.get("POSTGRES_PORT")
+
+# POSTGRES_READY = (
+#     POSTGRES_DB is not None
+#     and POSTGRES_PASSWORD is not None
+#     and POSTGRES_USER is not None
+#     and POSTGRES_HOST is not None
+#     and POSTGRES_PORT is not None
+# )
+
+# if POSTGRES_READY:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.postgresql",
+#             "NAME": POSTGRES_DB,
+#             "USER": POSTGRES_USER,
+#             "PASSWORD": POSTGRES_PASSWORD,
+#             "HOST": POSTGRES_HOST,
+#             "PORT": POSTGRES_PORT,
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -163,6 +189,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'forum:home'
 
 
+
 # Email attributes
 # EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST = 'smtp.gmail.com'
@@ -176,3 +203,11 @@ EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'pscpassword1234'
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
+
+AWS_ACCESS_KEY_ID = "AKIASZEDSMVB7TFB4LHO"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "psc-files"
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

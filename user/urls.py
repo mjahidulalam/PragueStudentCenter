@@ -1,4 +1,7 @@
-from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
+from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 from .views import  (
     #Register
@@ -22,5 +25,6 @@ urlpatterns = [
     path('profile/<int:pk>/<str:username>/delete', ProfileDeleteView.as_view(), name='delete'),
     path('profile/verification', verification, name='verify'),
     # path('profile/update', update_profile, name='update'),
-    path('activate/<uidb64>/<token>', VerificationView.as_view(), name='activate')
-]
+    path('activate/<uidb64>/<token>', VerificationView.as_view(), name='activate'),
+    # re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

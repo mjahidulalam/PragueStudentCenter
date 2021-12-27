@@ -70,7 +70,7 @@ def subject_list_by_department(request, dept_id):
 # List all forums (post) in a page
 def post_list_all(request):
     # posts = Post.objects.all()
-    posts = Post.objects.order_by('date')
+    posts = Post.objects.order_by('-date')
     paginator = Paginator(posts, 10)
     pages = request.GET.get('page')
     page = paginator.get_page(pages)

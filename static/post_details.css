@@ -1,0 +1,12 @@
+.card-head{
+    display: flex;
+}
+
+.card-head p{
+    padding-left: 15px;
+    font-size: small;
+}
+
+.text-secondary{
+    margin-bottom: 0px;
+}

@@ -25,10 +25,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-2%2+(rx8ytddo)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = str(os.environ.get('DEBUG')) == "1"
-DEBUG = True
+DEBUG = False
 
 ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOST') or None
-ALLOWED_HOSTS = ['praguestudentcenter.herokuapp.com']
+ALLOWED_HOSTS = ['praguestudentcenter.herokuapp.com', 'localhost']
 if ENV_ALLOWED_HOST is not None:
     ALLOWED_HOSTS = [ ENV_ALLOWED_HOST ]
 
@@ -88,16 +88,16 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if DEBUG:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
-# else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
     DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db2481l5cg4cjq',
         'USER': 'zwjexuxadihogj',
         'PASSWORD': '8cde5160b27ec2d10011f91550b96fd23088c511512231f0a2c3998296dfdd99',
@@ -106,33 +106,6 @@ if DEBUG:
         }
     }
 
-# postgres://zwjexuxadihogj:8cde5160b27ec2d10011f91550b96fd23088c511512231f0a2c3998296dfdd99@ec2-34-204-127-36.compute-1.amazonaws.com:5432/db2481l5cg4cjq
-
-# POSTGRES_DB = os.environ.get("POSTGRES_DB")
-# POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
-# POSTGRES_USER = os.environ.get("POSTGRES_USER")
-# POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
-# POSTGRES_PORT = os.environ.get("POSTGRES_PORT")
-
-# POSTGRES_READY = (
-#     POSTGRES_DB is not None
-#     and POSTGRES_PASSWORD is not None
-#     and POSTGRES_USER is not None
-#     and POSTGRES_HOST is not None
-#     and POSTGRES_PORT is not None
-# )
-
-# if POSTGRES_READY:
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.postgresql",
-#             "NAME": POSTGRES_DB,
-#             "USER": POSTGRES_USER,
-#             "PASSWORD": POSTGRES_PASSWORD,
-#             "HOST": POSTGRES_HOST,
-#             "PORT": POSTGRES_PORT,
-#         }
-#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -175,6 +148,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_files')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # MEDIA_ROOT  = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -189,7 +163,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'forum:home'
 
 
-
 # Email attributes
 # EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST = 'smtp.gmail.com'
@@ -202,3 +175,4 @@ EMAIL_PORT = 587
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_HOST_PASSWORD = 'pscpassword1234'
 
+DEBUG_PROPAGATE_EXCEPTIONS = True

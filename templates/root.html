@@ -21,6 +21,25 @@
   </head>
   <!-- <body style="background-color: rgb(224, 232, 243);"> -->
   <body style="background-color: #25282b;">
+    <style>
+      ::-webkit-scrollbar {
+        background-color: #5f5f5f;
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #aaaaaa; 
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: rgb(100, 100, 100); 
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+      </style>
     
     {% include 'components/navbar.html' %}
 

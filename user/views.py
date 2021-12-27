@@ -84,6 +84,8 @@ def profile(request, pk, username):
     context = {"user": user,
                 "profile": profile,
                 "profile_info": profile_info,
+                'posts': posts,
+                'number_of_posts': len(posts),
                 }
     return render(request, "users/profile.html", context)
 

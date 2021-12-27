@@ -24,7 +24,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-2%2+(rx8ytddo)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = str(os.environ.get('DEBUG')) == "1"
-DEBUG = True
+DEBUG = False
 
 ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOST') or None
 ALLOWED_HOSTS = ['praguestudentcenter.herokuapp.com']
@@ -95,14 +95,16 @@ if DEBUG:
 else:
     DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'PSC_DB',
-        'USER': 'PSC_DB_user',
-        'PASSWORD': 'PSC_DB_login',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db2481l5cg4cjq',
+        'USER': 'zwjexuxadihogj',
+        'PASSWORD': '8cde5160b27ec2d10011f91550b96fd23088c511512231f0a2c3998296dfdd99',
+        'HOST': 'ec2-34-204-127-36.compute-1.amazonaws.com',
+        'PORT': '5432',
         }
     }
+
+# postgres://zwjexuxadihogj:8cde5160b27ec2d10011f91550b96fd23088c511512231f0a2c3998296dfdd99@ec2-34-204-127-36.compute-1.amazonaws.com:5432/db2481l5cg4cjq
 
 # POSTGRES_DB = os.environ.get("POSTGRES_DB")
 # POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")

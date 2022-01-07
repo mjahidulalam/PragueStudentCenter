@@ -191,22 +191,18 @@ LOGIN_REDIRECT_URL = 'forum:home'
 
 
 # Email attributes
-# EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_USER = 'praguestudentcenter@gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-DEFAULT_FROM_EMAIL = 'praguestudentcenter@gmail.com'
-EMAIL_PORT = 587
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_HOST_PASSWORD = 'pscpassword1234'
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-AWS_ACCESS_KEY_ID = "AKIASZEDSMVB7TFB4LHO"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "psc-files"
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None

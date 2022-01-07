@@ -28,10 +28,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-2%2+(rx8ytddo)
 DEBUG = False
 
 ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOST') or None
-ALLOWED_HOSTS = ['praguestudentcenter.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['praguestudentcenter.herokuapp.com']
 if ENV_ALLOWED_HOST is not None:
     ALLOWED_HOSTS = [ ENV_ALLOWED_HOST ]
 
+    
 # Application definition
 
 INSTALLED_APPS = [

@@ -88,6 +88,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+POSTGRESQL_NAME = os.environ.get('POSTGRESQL_NAME')
+POSTGRESQL_USER = os.environ.get('POSTGRESQL_USER')
+POSTGRESQL_PASSWORD = os.environ.get('POSTGRESQL_PASSWORD')
+POSTGRESQL_HOST = os.environ.get('POSTGRESQL_HOST')
+POSTGRESQL_PORT = os.environ.get('POSTGRESQL_PORT')
+
 if DEBUG:
     DATABASES = {
         'default': {
@@ -99,11 +105,11 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('POSTGRESQL_NAME'),
-        'USER': os.environ.get('POSTGRESQL_USER'),
-        'PASSWORD': os.environ.get('POSTGRESQL_PASSWORD'),
-        'HOST': os.environ.get('POSTGRESQL_HOST'),
-        'PORT': os.environ.get('POSTGRESQL_PORT'),
+        'NAME': POSTGRESQL_NAME,
+        'USER': POSTGRESQL_USER,
+        'PASSWORD': POSTGRESQL_PASSWORD,
+        'HOST': POSTGRESQL_HOST,
+        'PORT': POSTGRESQL_PORT,
         }
     }
 
